@@ -32,10 +32,10 @@ function newwyr() {
 }
 function oldwyr(){
 	for (var i=0;i < ratherLikes.length;i++ ){
-		ratherOld.appendChild(document.createElement('li'));
 		fetch('https://would-you-rather-api.abaanshanid.repl.co?id='+ ratherLikes[i])
 			.then(response => response.json())
 			.then(response => {
+				ratherOld.appendChild(document.createElement('li'));
 				ratherOld.lastChild.innerText = response.data
 				console.log(ratherLikes[i])
 			})
