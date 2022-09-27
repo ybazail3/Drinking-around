@@ -5,7 +5,6 @@ const options = {
 		'X-RapidAPI-Host': 'brianiswu-open-brewery-db-v1.p.rapidapi.com'
 	}
 };
-
 fetch('https://brianiswu-open-brewery-db-v1.p.rapidapi.com/breweries?per_page=5/search?query=seattle', options)
 	.then(response => response.json())
 	.then(response => console.log(response))
