@@ -44,6 +44,7 @@ searchButton.addEventListener("click", function() {
 
 //function to populate search results
 function generateResults (breweryData) {
+	searchResults.innerHTML = "";
 	//pull stored fav breweries from local storage and store in array if not empty
 	var storedFavBreweries = JSON.parse(localStorage.getItem("favBreweries"));
 	if (storedFavBreweries !== null) {
@@ -86,16 +87,21 @@ function generateResults (breweryData) {
 
 	//add event listener to search results area
 	var favButton = document.querySelector("#search-results");	
-	favButton.addEventListener("click", function(event){
-		event.preventDefault
+	//call function to change stars and manipulate local storage
+	favButton.addEventListener("click", addFavs)
+}
+//change stars and manipulate local storage
+function addFavs (event) {
+	event.preventDefault
 		var star = event.target;
 		//only run function if clicked target is img element
 		if (star.matches("img")) {
-			console.log("click");
+			console.log("matches star")
 			//get brewery name from sibling element
 			var favBrew = star.nextElementSibling.textContent;
 			//if star is empty, fill and add to storage
 			if (star.src == emptyStar){
+				console.log("was empty")
 				star.src = filledStar
 
 				favsArray.push(favBrew);
@@ -104,6 +110,7 @@ function generateResults (breweryData) {
 			//if star is full, change to empty and remove from storage
 			} else if (star.src == filledStar){
 				star.src = emptyStar
+				console.log("was full")
 				//checks if corresponding brewery is in the fav array and removes it by index
 				removeElement = favsArray.indexOf(favBrew);
 				favsArray.splice(removeElement, 1);
@@ -112,9 +119,7 @@ function generateResults (breweryData) {
 
 			};
 		}
-	})
 }
-
 
 // empty star attribution -   Offnfopt, Public domain, via Wikimedia Commons
 // filled star attribution -   Yakiv Gluck, Public domain, via Wikimedia Commons
