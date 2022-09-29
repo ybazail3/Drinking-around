@@ -96,12 +96,10 @@ function addFavs (event) {
 		var star = event.target;
 		//only run function if clicked target is img element
 		if (star.matches("img")) {
-			console.log("matches star")
 			//get brewery name from sibling element
 			var favBrew = star.nextElementSibling.textContent;
 			//if star is empty, fill and add to storage
 			if (star.src == emptyStar){
-				console.log("was empty")
 				star.src = filledStar
 
 				favsArray.push(favBrew);
@@ -110,7 +108,6 @@ function addFavs (event) {
 			//if star is full, change to empty and remove from storage
 			} else if (star.src == filledStar){
 				star.src = emptyStar
-				console.log("was full")
 				//checks if corresponding brewery is in the fav array and removes it by index
 				removeElement = favsArray.indexOf(favBrew);
 				favsArray.splice(removeElement, 1);
@@ -123,3 +120,55 @@ function addFavs (event) {
 
 // empty star attribution -   Offnfopt, Public domain, via Wikimedia Commons
 // filled star attribution -   Yakiv Gluck, Public domain, via Wikimedia Commons
+var ratherBox = document.getElementById('rather');
+var ratherSave = document.getElementById('ratherSave')
+var ratherNew = document.getElementById('ratherNew')
+var ratherOld = document.getElementById('ratherOld')
+var ratherLikes = [];
+var wyr;
+//defining variables
+
+ratherLikes = JSON.parse(window.localStorage.getItem("ratherLikes"))
+
+function newwyr() {
+	fetch('https://would-you-rather-api.abaanshanid.repl.co')
+		.then(response => response.json())
+		.then(response => {
+			wyr = response
+			ratherBox.innerText = wyr.data
+		})
+		return wyr
+//fetches api and parses the json then puts the resuting object into a variable and returns it to bring it to global scope also gets a new prompt
+}
+
+function oldwyr(){
+	for (var i=0;i < ratherLikes.length;i++ ){
+         fetch('https://would-you-rather-api.abaanshanid.repl.co?id='+ ratherLikes[i])
+			.then(response => response.json())
+			//parses json
+			.then(response => {
+			ratherOld.appendChild(document.createElement('li'));
+			ratherOld.lastChild.innerText = response.data
+			//creates a li and inserts the prompt into the li
+		})
+	}
+}
+// gets the old favourite would you rathers and indivisually callls them and creates a list item for them
+
+ratherNew.addEventListener("click",newwyr);
+//calls the newwyr function and generates a new would you rather prompt
+
+ratherSave.addEventListener("click",()=>{
+	ratherLikes = ratherLikes.concat(wyr.id);
+	//adds the would you rather id into a array
+	ratherLikes = ratherLikes.filter((item,index) => ratherLikes.indexOf(item) === index);
+	//filters the array so there are no doubles by checking if the index of a number matches the index of search effectively removing any repeat additons
+	window.localStorage.setItem("ratherLikes", JSON.stringify(ratherLikes));
+	//saves the resulting array into local storage
+} )
+
+
+newwyr();
+// runs the first would you rather
+
+oldwyr();
