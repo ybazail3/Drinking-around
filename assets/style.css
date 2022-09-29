@@ -1,0 +1,12 @@
+<<<<<<< HEAD
+=======
+img {
+    max-height: 30px;
+}
+#rather .flex {
+    width: 100%;
+    align-items: flex-end;
+    justify-content: space-evenly;
+    
+}
+>>>>>>> fcf199eb71b3fa7ce1b4a61c9ba173c8f75a1a1b
