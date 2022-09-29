@@ -4,9 +4,13 @@ var ratherNew = document.getElementById('ratherNew')
 var ratherOld = document.getElementById('ratherOld')
 var ratherLikes = [];
 var wyr;
-//defining variables
+//defining variablesgti
 
-ratherLikes = JSON.parse(window.localStorage.getItem("ratherLikes"))
+var parsed = JSON.parse(window.localStorage.getItem("ratherLikes"))
+if ( parsed !== null){
+    ratherLikes = ratherLikes.concat(parsed)
+}   
+// makes sure that if loacal storage is empty that it doesn't add null to the array
 
 const options = {
 	method: 'GET',
@@ -18,7 +22,8 @@ const options = {
 fetch('https://brianiswu-open-brewery-db-v1.p.rapidapi.com/breweries?per_page=5/search?query=seattle', options)
 	.then(response => response.json())
 	.then(response => console.log(response))
-	.catch(err => console.error(err));
+
+    .catch(err => console.error(err));
 
 function newwyr() {
 	fetch('https://would-you-rather-api.abaanshanid.repl.co')
@@ -49,12 +54,20 @@ ratherNew.addEventListener("click",newwyr);
 //calls the newwyr function and generates a new would you rather prompt
 
 ratherSave.addEventListener("click",()=>{
+var strue = ratherLikes.length;
 	ratherLikes = ratherLikes.concat(wyr.id);
 	//adds the would you rather id into a array
 	ratherLikes = ratherLikes.filter((item,index) => ratherLikes.indexOf(item) === index);
 	//filters the array so there are no doubles by checking if the index of a number matches the index of search effectively removing any repeat additons
 	window.localStorage.setItem("ratherLikes", JSON.stringify(ratherLikes));
 	//saves the resulting array into local storage
+
+    if (strue !== ratherLikes.length) {
+        ratherOld.appendChild(document.createElement('li'));
+        ratherOld.lastChild.innerText = ratherBox.innerText
+    }
+// seaperated adding the current item to save list to save some hassle
+
 } )
 
 
@@ -62,3 +75,4 @@ newwyr();
 // runs the first would you rather
 
 oldwyr();
+//loads the favourites list
