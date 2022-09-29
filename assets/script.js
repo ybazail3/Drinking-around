@@ -33,17 +33,15 @@ function newwyr() {
 
 function oldwyr(){
 	for (var i=0;i < ratherLikes.length;i++ ){
-		const damn = async () => {
-				await fetch('https://would-you-rather-api.abaanshanid.repl.co?id='+ ratherLikes[i])
-					.then(response => response.json())
-					//parses json
-					.then(response => {
-						ratherOld.appendChild(document.createElement('li'));
-						ratherOld.lastChild.innerText = response.data
-						//creates a li and inserts the prompt into the li
-					})
-				}
-		}
+         fetch('https://would-you-rather-api.abaanshanid.repl.co?id='+ ratherLikes[i])
+			.then(response => response.json())
+			//parses json
+			.then(response => {
+			ratherOld.appendChild(document.createElement('li'));
+			ratherOld.lastChild.innerText = response.data
+			//creates a li and inserts the prompt into the li
+		})
+	}
 }
 // gets the old favourite would you rathers and indivisually callls them and creates a list item for them
 
