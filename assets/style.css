@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+ img {
+=======
 img {
+>>>>>>> 9b8253a8a3253647357ef42d573dc409fe438bde
     max-height: 30px;
 }
 #rather .flex {
@@ -7,3 +11,10 @@ img {
     justify-content: space-evenly;
     
 }
+<<<<<<< HEAD
+
+#search-results.hidden {
+    visibility: hidden;
+}
+=======
+>>>>>>> 9b8253a8a3253647357ef42d573dc409fe438bde

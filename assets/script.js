@@ -44,23 +44,35 @@ searchButton.addEventListener("click", function() {
 
 //function to populate search results
 function generateResults (breweryData) {
+
 	searchResults.innerHTML = "";
+	searchResults.classList.remove("invisible")
 	//pull stored fav breweries from local storage and store in array if not empty
 	var storedFavBreweries = JSON.parse(localStorage.getItem("favBreweries"));
 	if (storedFavBreweries !== null) {
-		favsArray =storedFavBreweries
+		favsArray = storedFavBreweries
 	}
+	var brewHeading = document.createElement("h2");
+	brewHeading.textContent = "Breweries"
+	brewHeading.classList.add("text-xl", "font-bold", "inline")
+	searchResults.append(brewHeading);
+
+	var favsHeading = document.createElement("h2");
+	favsHeading.textContent = "Favs";
+	favsHeading.classList.add("float-right", "text-xl", "font-bold", "inline")
+	searchResults.append(favsHeading);
 
 	//for loop to create new element for first 5 search results
 	for (var i= 0; i<5; i++){
 
 		//create a new div element to store brewery info
 		var resultDiv = document.createElement("div");
+		resultDiv.classList.add("mt-2")
 		searchResults.append(resultDiv);
 
 		//create img element
 		var resultFav = document.createElement ("img");
-		resultFav.classList.add("float-right", "result-fav");
+		resultFav.classList.add("float-right");
 
 		//if result name is in storage add a filled star, if not empty star
 		if (favsArray.includes(breweryData[i].name)){
