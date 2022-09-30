@@ -46,6 +46,7 @@ searchButton.addEventListener("click", function() {
 function generateResults (breweryData) {
 
 	searchResults.innerHTML = "";
+	searchResults.classList.remove("invisible")
 	//pull stored fav breweries from local storage and store in array if not empty
 	var storedFavBreweries = JSON.parse(localStorage.getItem("favBreweries"));
 	if (storedFavBreweries !== null) {
