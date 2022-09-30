@@ -63,7 +63,7 @@ function generateResults (breweryData) {
 	searchResults.append(favsHeading);
 
 	//for loop to create new element for first 5 search results
-	for (var i= 0; i<5; i++){
+	for (var i= 0; i<5 && i<breweryData.length; i++){
 
 		//create a new div element to store brewery info
 		var resultDiv = document.createElement("div");
