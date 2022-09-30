@@ -1,4 +1,6 @@
- #search-results img {
+
+#search-results img {
+
     max-height: 30px;
 }
 #rather .flex {
@@ -7,3 +9,8 @@
     justify-content: space-evenly;
     
 }
+
+#search-results.hidden {
+    visibility: hidden;
+}
+
