@@ -14,7 +14,7 @@ To save a topic press the save button and it will add to the list of saved topic
 
 ## Brewery search
 
-! [Brewery search area](./assets/images/Screen Shot 2022-09-29 at 6.48.12 PM.png)
+![Brewery search area](./assets/images/Screen Shot 2022-09-29 at 6.48.12 PM.png)
 
 ## Credits
 empty and filled star = Offnfopt, Public domain, via Wikimedia Commons
