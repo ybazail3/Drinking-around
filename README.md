@@ -31,4 +31,6 @@ would you rather api = https://would-you-rather-api.abaanshanid.repl.co/home/
 ## License
 Please refer to LICENSE in repository.
 
-:)
+## Link
+
+https://ybazail3.github.io/Drinking-around/
